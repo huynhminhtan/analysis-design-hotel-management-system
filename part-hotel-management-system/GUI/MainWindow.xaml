@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GUI"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="CYBERHOL Management System" Height="900" Width="1400">
+        Title="CYBERHOL Management System" Height="450" Width="780">
     <Grid>
 
         <Grid.ColumnDefinitions>
