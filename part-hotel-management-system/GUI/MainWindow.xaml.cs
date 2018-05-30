@@ -32,31 +32,45 @@ namespace GUI
         {
         }
 
-        private void btnThemPhong_Click(object sender, RoutedEventArgs e)
+
+        private void GridMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-          // test select data 
+        }
 
-            NpgsqlDataAdapter da = BUS.KhachHangLapPhieuThueBUS.LayDanhSachKhachhang();
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+            GridMain.IsEnabled = false;
+        }
 
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
 
-            ds.Reset();
-            // filling DataSet with result from NpgsqlDataAdapter
-            try
+            GridMain.IsEnabled = true;
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UserControl usercontrol = null;
+            GridMain.Children.Clear();
+
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                da.Fill(ds);
-                dt = ds.Tables[0];
-
-                //while (true) ;
+                case "MenuQuanLyPhong":
+                    usercontrol = new UserControlQuanLyPhong();
+                    GridMain.Children.Add(usercontrol);
+                    break;
+                case "MenuQuanLyPhieuThue":
+                    usercontrol = new UserControlQuanLyPhieuThue();
+                    GridMain.Children.Add(usercontrol);
+                    break;
+                default:
+                    break;
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
         }
     }
 }
