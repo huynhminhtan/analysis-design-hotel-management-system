@@ -5,12 +5,126 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="CYBERHOL Management System" Height="450" Width="780" ShowMaxRestoreButton="False">
-    <Grid >
-        <Controls:MetroTabControl TabStripPlacement="Left" VerticalContentAlignment="Center" VerticalAlignment="Stretch">
+        Title="CYBERHOL Management System" Height="500" Width="800" ShowMaxRestoreButton="False" WindowStartupLocation="CenterScreen" ResizeBorderThickness="0,3.2,3.2,3.2" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="StackPanelMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="StackPanelMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid>
+        <Grid x:Name="GridMain" Height="473.6" Width="723.6" HorizontalAlignment="Right"></Grid>
+        
+        <StackPanel x:Name="StackPanelMenu" Width="70" HorizontalAlignment="Left" Background="AliceBlue">
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#FFAEAEAE"/>
+            </StackPanel.Effect>
+            
+            <Grid Height="70">
+
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+
+                <Button x:Name="ButtonOpenMenu" Height="60" Width="60" Margin="5" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonOpenMenu_Click">
+                    <materialDesign:PackIcon Kind="Menu" Width="30" Height="30"/>
+                </Button>
+
+                <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Right" Visibility="Collapsed" Height="60" Width="60" Margin="5" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonCloseMenu_Click">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Width="30" Height="30"/>
+                </Button>
+            </Grid>
+
+            <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="0" SelectionChanged="ListViewMenu_SelectionChanged">
+                <ListViewItem x:Name="MenuQuanLyPhong" Height="57.5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                        <TextBlock Text="Quản Lý Phòng" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem x:Name="MenuQuanLyPhieuThue" Height="57.5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Animation" Height="25" Width="25" Margin="10"/>
+                        <TextBlock Text="Quản Lý Phiếu Thuê" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem x:Name="MenuQuanLyKhachHang" Height="57.5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountBox" Height="25" Width="25" Margin="10"/>
+                        <TextBlock Text="Quản Lý Khách Hàng" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem x:Name="MenuQuanLyDichVu" Height="57.5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CreditCardPlus" Height="25" Width="25" Margin="10"/>
+                        <TextBlock Text="Quản Lý Dịch Vụ" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem x:Name="MenuQuanLyNhanVien" Height="57.5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="HumanMaleFemale" Height="25" Width="25" Margin="10"/>
+                        <TextBlock Text="Quản Lý Nhân Viên" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem x:Name="MenuBaoCaoThang" Height="57.5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ChartBar" Height="25" Width="25" Margin="10"/>
+                        <TextBlock Text="Báo Cáo Tháng" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem x:Name="MenuHeThong" Height="57.5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" Margin="10"/>
+                        <TextBlock Text="Hệ Thống" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+            </ListView>
+        </StackPanel>
+
+
+        <!--<Controls:MetroTabControl TabStripPlacement="Left" VerticalContentAlignment="Center" VerticalAlignment="Stretch">
             <Controls:MetroTabItem Name="TabQuanLyPhong" Header="Quản Lý Phòng" BorderThickness="1">
-                <Grid>
+                <Grid Margin="15,0,5,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="0.2*"></RowDefinition>
@@ -18,49 +132,49 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="0.2*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="5*"></RowDefinition>
+                        <RowDefinition Height="6*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBlock Text="Tìm Phòng" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20" Margin="10,0"></TextBlock>
+                        <TextBlock Text="Tìm Phòng" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                     </Grid>
                     
                     <Grid Grid.Row="1">
-                        <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"  Margin="10,0"/>
+                        <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
                     </Grid>
 
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0">
-                            <Label Content="Mã Phòng" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                            <Label Content="Mã Phòng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
                         </Grid>
 
                         <Grid Grid.Column="1">
-                            <TextBox Name="txtboxMaPhong" Margin="5" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                            <TextBox Name="txtboxMaPhong" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
                         </Grid>
 
                         <Grid Grid.Column="2">
-                            <Label Content="Tên Phòng" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                            <Label Content="Tên Phòng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
                         </Grid>
 
                         <Grid Grid.Column="3">
-                            <TextBox Name="txtboxTenPhong" Margin="5" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                            <TextBox Name="txtboxTenPhong" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
                         </Grid>
 
                     </Grid>
 
                     <Grid Grid.Row="3">
-                        <TextBlock Text="Quản Lý" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20" Margin="10,0"></TextBlock>
+                        <TextBlock Text="Quản Lý" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                     </Grid>
 
                     <Grid Grid.Row="4">
-                        <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"  Margin="10,0"/>
+                        <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
                     </Grid>
 
                     <Grid Grid.Row="5">
@@ -71,23 +185,124 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0">
-                            <Button Name="btnThemPhong" Content="Thêm Phòng" Margin="5" Background="Blue"></Button>
+                            <Button Name="btnThemPhong" Content="Thêm Phòng" Margin="7"></Button>
                         </Grid>
 
                         <Grid Grid.Column="1">
-                            <Button Name="btnCapNhatPhong" Content="Cập Nhật Phòng" Margin="5" Background="Blue"></Button>
+                            <Button Name="btnCapNhatPhong" Content="Cập Nhật Phòng" Margin="7"></Button>
                         </Grid>
 
                         <Grid Grid.Column="2">                            
-                            <Button Name="btnXoaPhong" Content="Xóa Phòng" Margin="5" Background="Blue"></Button>
+                            <Button Name="btnXoaPhong" Content="Xóa Phòng" Margin="7"></Button>
                         </Grid>
                     </Grid>
 
                 </Grid>
             </Controls:MetroTabItem>
-            
-            <Controls:MetroTabItem Name="TabQuanLyPhieuThue" Header="Quản Lý Phiếu Thuê" BorderThickness="1"></Controls:MetroTabItem>
-            
+
+            <Controls:MetroTabItem Name="TabQuanLyPhieuThue" Header="Quản Lý Phiếu Thuê" BorderThickness="1">
+                <Grid Margin="15,0,5,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="Tìm Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Label Content="Mã Phiếu Thuê" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <TextBox Name="txtboxMaPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <Label Content="Ngày Lập" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+                        </Grid>
+
+                        <Grid Grid.Column="3">
+                            <TextBox Name="txtboxNgayLapPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Label Content="Mã Khách Hàng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <TextBox Name="txtboxMaKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <Label Content="Tên Khách Hàng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+                        </Grid>
+
+                        <Grid Grid.Column="3">
+                            <TextBox Name="txtboxTenKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <TextBlock Text="Quản Lý" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7"></Button>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <Button Name="btnCapNhatPhieuThue" Content="Cập Nhật Phiếu Thuê" Margin="7"></Button>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <Button Name="btnLapHoaDonPhieuThue" Content="Lập Hóa Đơn" Margin="7"></Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Controls:MetroTabItem>
+
             <Controls:MetroTabItem Name="TabQuanLyKhachHang" Header="Quản Lý Khách Hàng" BorderThickness="1"></Controls:MetroTabItem>
             
             <Controls:MetroTabItem Name="TabQuanLyDichVu" Header="Quản Lý Dịch Vụ" BorderThickness="1"/>
@@ -97,6 +312,7 @@
             <Controls:MetroTabItem Name="TabBaoCaoThang" Header="Báo Cáo Tháng" BorderThickness="1"></Controls:MetroTabItem>
             
             <Controls:MetroTabItem Name="TabHeThong" Header="Hệ Thống" BorderThickness="1"></Controls:MetroTabItem>
-        </Controls:MetroTabControl>
+        </Controls:MetroTabControl>-->
     </Grid>
+
 </Controls:MetroWindow>
