@@ -88,13 +88,13 @@
 
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7"></Button>
+                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7" Click="btnLapPhieuThue_Click"></Button>
             </Grid>
 
             <Grid Grid.Column="1">

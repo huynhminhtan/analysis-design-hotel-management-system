@@ -16,18 +16,18 @@ using System.Windows.Shapes;
 namespace GUI
 {
     /// <summary>
-    /// Interaction logic for UserControlQuanLyPhieuThue.xaml
+    /// Interaction logic for UserControlChonKhachHangThue.xaml
     /// </summary>
-    public partial class UserControlQuanLyPhieuThue : UserControl
+    public partial class UserControlChonKhachHangThue : UserControl
     {
-        public UserControlQuanLyPhieuThue()
+        public UserControlChonKhachHangThue()
         {
             InitializeComponent();
         }
 
-        private void btnLapPhieuThue_Click(object sender, RoutedEventArgs e)
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
         {
-            UserControl usercontrol = new UserControlChonKhachHangThue();
+            UserControl usercontrol = new UserControlQuanLyPhieuThue();
             Grid gridmain = ((Grid)this.Parent);
             gridmain.Children.Clear();
             gridmain.Children.Add(usercontrol);
