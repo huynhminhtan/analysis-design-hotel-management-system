@@ -85,6 +85,9 @@
     <Compile Include="UserControlChonKhachHangThue.xaml.cs">
       <DependentUpon>UserControlChonKhachHangThue.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlLapPhieuThue.xaml.cs">
+      <DependentUpon>UserControlLapPhieuThue.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlQuanLyPhieuThue.xaml.cs">
       <DependentUpon>UserControlQuanLyPhieuThue.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControlChonKhachHangThue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlLapPhieuThue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

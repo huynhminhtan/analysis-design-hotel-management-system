@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="GUI.UserControlLapPhieuThue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI"
+             mc:Ignorable="d">
+    <Grid Margin="15,0,5,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="2.2*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock Text="Lập Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Label Content="Mã Phiếu Thuê" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <TextBox Name="txtboxMaPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"/>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Label Content="Ngày Lập" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <TextBox Name="txtboxNgayLapPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Label Content="Mã Khách Hàng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <TextBox Name="txtboxMaKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Label Content="Tên Khách Hàng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <TextBox Name="txtboxTenKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <TextBlock Text="Chi Tiết Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="5">
+            <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="6">
+
+        </Grid>
+
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Button Name="btnLuuPhieuThue" Content="Lưu Phiếu Thuê" Margin="7"></Button>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Button Name="btnThoat" Content="Thoát" Margin="7" Click="btnThoat_Click"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

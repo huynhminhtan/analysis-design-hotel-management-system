@@ -15,6 +15,8 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -124,12 +126,20 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7"></Button>
+                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7" Click="btnLapPhieuThue_Click"></Button>
             </Grid>
 
             <Grid Grid.Column="2">
                 <Button Name="btnHuy" Content="Hủy" Margin="7" Click="btnHuy_Click"></Button>
             </Grid>
+        </Grid>
+
+        <Grid Grid.Row="8">
+            <TextBlock Text="Danh Sách Khách Hàng" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="9">
+            <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -42,7 +42,7 @@ namespace DAO
             {
                 // something went wrong, and you wanna know why
                
-                throw;
+                throw msg;
             }
         }
 
