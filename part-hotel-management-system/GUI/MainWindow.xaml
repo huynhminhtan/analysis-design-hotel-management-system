@@ -71,7 +71,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0">
-                            <Button Name="btnThemPhong" Content="Thêm Phòng" Margin="5" Background="Blue"></Button>
+                            <Button Name="btnThemPhong" Content="Thêm Phòng" Margin="5" Background="Blue" Click="btnThemPhong_Click"></Button>
                         </Grid>
 
                         <Grid Grid.Column="1">
