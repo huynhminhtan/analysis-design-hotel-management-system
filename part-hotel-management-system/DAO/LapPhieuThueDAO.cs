@@ -45,6 +45,15 @@ namespace DAO
                     phieuthue.MaNhanVien = reader[2].ToString();
                     phieuthue.NgayLap = DateTime.Parse(reader[3].ToString());
                     phieuthue.SoLuongPhong = Int32.Parse(reader[4].ToString());
+
+                    if(reader[2].ToString() == "true")
+                    {
+                        phieuthue.TinhTrang = true;
+                    }
+                    else
+                    {
+                        phieuthue.TinhTrang = false;
+                    }
                 }
 
                 conn.Close();
