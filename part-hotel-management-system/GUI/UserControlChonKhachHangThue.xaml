@@ -18,6 +18,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -140,6 +141,11 @@
 
         <Grid Grid.Row="9">
             <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="10">
+            <DataGrid FontSize="12" Name="dgvDanhSachKhachHang" Height="230" AutoGenerateColumns="true"  VerticalAlignment="Top" SelectionChanged="DataGrid_SelectionChanged" HorizontalAlignment="Stretch">
+            </DataGrid>
         </Grid>
     </Grid>
 </UserControl>
