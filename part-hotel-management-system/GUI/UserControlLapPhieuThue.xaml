@@ -118,11 +118,11 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Button Name="btnLuuPhieuThue" Content="Lưu Phiếu Thuê" Margin="7"></Button>
+                <Button Name="btnLuuPhieuThue" Content="Lưu Phiếu Thuê" Margin="7,2"></Button>
             </Grid>
 
             <Grid Grid.Column="1">
-                <Button Name="btnThoat" Content="Thoát" Margin="7" Click="btnThoat_Click"></Button>
+                <Button Name="btnThoat" Content="Thoát" Margin="7,2" Click="btnThoat_Click"></Button>
             </Grid>
         </Grid>
     </Grid>

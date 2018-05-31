@@ -28,7 +28,7 @@ namespace GUI
 
             // change style datagrid view
 
-            // LayDanhSachKhachHang();
+            LayDanhSachKhachHang();
         }
 
         private void LayDanhSachKhachHang()
@@ -47,6 +47,8 @@ namespace GUI
                 da.Fill(ds);
                 dt = ds.Tables[0];
                 dgvDanhSachKhachHang.ItemsSource = dt.DefaultView;
+
+
 
                 // create point debug here
                 //while (true) ;

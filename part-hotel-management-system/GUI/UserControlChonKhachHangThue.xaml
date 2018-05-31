@@ -8,7 +8,7 @@
 
     <UserControl.Resources>
         <Style TargetType="DataGridCell">
-            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
         </Style>
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -134,15 +134,15 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Button Name="btnThemKhachHang" Content="Thêm Khách Hàng" Margin="7"></Button>
+                <Button Name="btnThemKhachHang" Content="Thêm Khách Hàng" Margin="7,2"></Button>
             </Grid>
 
             <Grid Grid.Column="1">
-                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7" Click="btnLapPhieuThue_Click"></Button>
+                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7,2" Click="btnLapPhieuThue_Click"></Button>
             </Grid>
 
             <Grid Grid.Column="2">
-                <Button Name="btnHuy" Content="Hủy" Margin="7" Click="btnHuy_Click"></Button>
+                <Button Name="btnHuy" Content="Hủy" Margin="7,2" Click="btnHuy_Click"></Button>
             </Grid>
         </Grid>
 
@@ -157,13 +157,13 @@
         <Grid Grid.Row="10">
             <DataGrid Name="dgvDanhSachKhachHang" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="1.5*" Header="Mã Khách Hàng"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Tên Khách Hàng"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="Loại Khách"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="CMND"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="Ngày Sinh"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="Địa Chỉ"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="SĐT"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Mã KH" Binding="{Binding makhachhang}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Họ Tên" Binding="{Binding hoten}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Loại Khách" Binding="{Binding maloaikhachhang}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="CMND" Binding="{Binding cmnd}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Ngày Sinh" Binding="{Binding ngaysinh}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Địa Chỉ" Binding="{Binding diachi}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="SĐT" Binding="{Binding sodienthoai}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

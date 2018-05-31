@@ -69,15 +69,15 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
-                    <Button Name="btnThemPhong" Content="Thêm Phòng" Margin="7" Click="btnThemPhong_Click"></Button>
+                    <Button Name="btnThemPhong" Content="Thêm Phòng" Margin="7,2" Click="btnThemPhong_Click"></Button>
                 </Grid>
 
                 <Grid Grid.Column="1">
-                    <Button Name="btnCapNhatPhong" Content="Cập Nhật Phòng" Margin="7"></Button>
+                    <Button Name="btnCapNhatPhong" Content="Cập Nhật Phòng" Margin="7,2"></Button>
                 </Grid>
 
                 <Grid Grid.Column="2">
-                    <Button Name="btnXoaPhong" Content="Xóa Phòng" Margin="7"></Button>
+                    <Button Name="btnXoaPhong" Content="Xóa Phòng" Margin="7,2"></Button>
                 </Grid>
             </Grid>
 

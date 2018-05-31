@@ -105,15 +105,15 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7" Click="btnLapPhieuThue_Click"></Button>
+                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7,2" Click="btnLapPhieuThue_Click"></Button>
             </Grid>
 
             <Grid Grid.Column="1">
-                <Button Name="btnCapNhatPhieuThue" Content="Cập Nhật Phiếu Thuê" Margin="7"></Button>
+                <Button Name="btnCapNhatPhieuThue" Content="Cập Nhật Phiếu Thuê" Margin="7,2"></Button>
             </Grid>
 
             <Grid Grid.Column="2">
-                <Button Name="btnLapHoaDonPhieuThue" Content="Lập Hóa Đơn" Margin="7"></Button>
+                <Button Name="btnLapHoaDonPhieuThue" Content="Lập Hóa Đơn" Margin="7,2"></Button>
             </Grid>
         </Grid>
 
