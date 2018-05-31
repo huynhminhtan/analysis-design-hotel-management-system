@@ -28,7 +28,7 @@ namespace GUI
 
             // change style datagrid view
 
-            LayDanhSachKhachHang();
+            // LayDanhSachKhachHang();
         }
 
         private void LayDanhSachKhachHang()

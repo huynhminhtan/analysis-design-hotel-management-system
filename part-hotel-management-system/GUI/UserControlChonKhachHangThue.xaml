@@ -12,6 +12,7 @@
         </Style>
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Focusable"  Value="False"/>
         </Style>
     </UserControl.Resources>
 
@@ -154,9 +155,8 @@
         </Grid>
 
         <Grid Grid.Row="10">
-            <DataGrid AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+            <DataGrid Name="dgvDanhSachKhachHang" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="0.5*" Header="STT"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.5*" Header="Mã Khách Hàng"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.5*" Header="Tên Khách Hàng"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.2*" Header="Loại Khách"></DataGridTextColumn>
