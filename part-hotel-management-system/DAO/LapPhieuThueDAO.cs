@@ -68,6 +68,37 @@ namespace DAO
             }
         }
 
+        public static NpgsqlDataAdapter LayDanhSachPhieuThue()
+        {
+            try
+            {
+                // Making connection with Npgsql provider
+                NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
+               
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                // quite complex sql statement
+                string sql = "SELECT * FROM phieuthue";
+                // data adapter making request from our connection
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+
+                conn.Close();
+                return da;
+
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+        }
+
         #endregion
 
     }

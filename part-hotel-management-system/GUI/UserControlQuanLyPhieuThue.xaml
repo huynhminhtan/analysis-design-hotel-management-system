@@ -126,14 +126,14 @@
         </Grid>
 
         <Grid Grid.Row="9">
-            <DataGrid HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+            <DataGrid Name="dgvDanhSachPhieuThue" HeadersVisibility="All" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="0.5*" Header="STT"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Mã Phiếu"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Mã Khách Hàng"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Mã Nhân Viên"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Ngày Lập"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Trạng Thái"></DataGridTextColumn>
+                    <DataGridTextColumn Width="0.5*" Header="STT" Binding="{Binding maphieuthue}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Mã Phiếu" Binding="{Binding makhachhang}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Mã Khách Hàng" Binding="{Binding manhanvien}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Mã Nhân Viên" Binding="{Binding ngaylap}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Ngày Lập" Binding="{Binding soluongphong}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Trạng Thái" Binding="{Binding trangthai}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

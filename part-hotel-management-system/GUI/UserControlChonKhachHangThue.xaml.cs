@@ -29,10 +29,10 @@ namespace GUI
 
             // change style datagrid view
 
-            LayDanhSachKhachHang();
+            HIenThiDanhSachKhachHang();
         }
 
-        private void LayDanhSachKhachHang()
+        private void HIenThiDanhSachKhachHang()
         {
             // test select data 
 

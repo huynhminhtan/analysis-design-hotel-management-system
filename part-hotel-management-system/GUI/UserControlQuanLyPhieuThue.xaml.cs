@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,35 @@ namespace GUI
         public UserControlQuanLyPhieuThue()
         {
             InitializeComponent();
+
+            HienThiDanhSachPhieuThue();
+        }
+
+        private void HienThiDanhSachPhieuThue()
+        {
+            // test select data 
+
+            NpgsqlDataAdapter da = BUS.LapPhieuThueBUS.LayDanhSachPhieuThue();
+
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            ds.Reset();
+            // filling DataSet with result from NpgsqlDataAdapter
+            try
+            {
+                da.Fill(ds);
+                dt = ds.Tables[0];
+                dgvDanhSachPhieuThue.ItemsSource = dt.DefaultView;
+
+                // create point debug here
+                //while (true) ;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void btnLapPhieuThue_Click(object sender, RoutedEventArgs e)
