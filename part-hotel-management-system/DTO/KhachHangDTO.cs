@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class KhachHangDTO
+    public class KhachHangDTO
     {
-        KhachHangDTO()
+        public KhachHangDTO()
         {
             //maKhachHang = "";
         }

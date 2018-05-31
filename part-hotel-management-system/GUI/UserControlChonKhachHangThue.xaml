@@ -53,7 +53,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <TextBox Name="txtboxMaKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                <TextBox Name="txtboxMaKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" TextChanged="txtboxMaKhachHang_TextChanged"></TextBox>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -61,7 +61,7 @@
             </Grid>
 
             <Grid Grid.Column="3">
-                <TextBox Name="txtboxHoTenKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                <TextBox Name="txtboxHoTenKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" TextChanged="txtboxHoTenKhachHang_TextChanged"></TextBox>
             </Grid>
 
         </Grid>
@@ -79,7 +79,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <TextBox Name="txtboxCMNDKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                <TextBox Name="txtboxCMNDKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" TextChanged="txtboxCMNDKhachHang_TextChanged"></TextBox>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -105,7 +105,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <TextBox Name="txtboxDiaChiKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                <TextBox Name="txtboxDiaChiKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" TextChanged="txtboxDiaChiKhachHang_TextChanged"></TextBox>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -113,7 +113,7 @@
             </Grid>
 
             <Grid Grid.Column="3">
-                <TextBox Name="txtboxSDTKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15"></TextBox>
+                <TextBox Name="txtboxSDTKhachHang" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" TextChanged="txtboxSDTKhachHang_TextChanged"></TextBox>
             </Grid>
 
         </Grid>
@@ -157,7 +157,7 @@
         <Grid Grid.Row="10">
             <DataGrid Name="dgvDanhSachKhachHang" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="1.5*" Header="Mã Khách Hàng"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Mã Khách Hàng" x:Name="makhachhang" ></DataGridTextColumn>
                     <DataGridTextColumn Width="1.5*" Header="Tên Khách Hàng"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.2*" Header="Loại Khách"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.2*" Header="CMND"></DataGridTextColumn>
