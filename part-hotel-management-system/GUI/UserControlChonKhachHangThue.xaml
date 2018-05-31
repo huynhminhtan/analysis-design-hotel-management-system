@@ -5,6 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Margin="15,0,5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -144,7 +154,17 @@
         </Grid>
 
         <Grid Grid.Row="10">
-            <DataGrid FontSize="12" Name="dgvDanhSachKhachHang" Height="230" AutoGenerateColumns="true"  VerticalAlignment="Top" SelectionChanged="DataGrid_SelectionChanged" HorizontalAlignment="Stretch">
+            <DataGrid AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="0.5*" Header="STT"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Mã Khách Hàng"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Tên Khách Hàng"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Loại Khách"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="CMND"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Ngày Sinh"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Địa Chỉ"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="SĐT"></DataGridTextColumn>
+                </DataGrid.Columns>
             </DataGrid>
         </Grid>
     </Grid>

@@ -82,6 +82,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControlBaoCaoThang.xaml.cs">
+      <DependentUpon>UserControlBaoCaoThang.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlChonKhachHangThue.xaml.cs">
       <DependentUpon>UserControlChonKhachHangThue.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControlBaoCaoThang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlChonKhachHangThue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

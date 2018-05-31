@@ -47,9 +47,8 @@
             <StackPanel.Effect>
                 <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#FFAEAEAE"/>
             </StackPanel.Effect>
-            
-            <Grid Height="70">
 
+            <Grid Height="70">
                 <Grid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

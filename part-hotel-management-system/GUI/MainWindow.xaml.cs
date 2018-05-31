@@ -68,6 +68,10 @@ namespace GUI
                     usercontrol = new UserControlQuanLyPhieuThue();
                     GridMain.Children.Add(usercontrol);
                     break;
+                case "MenuBaoCaoThang":
+                    usercontrol = new UserControlBaoCaoThang();
+                    GridMain.Children.Add(usercontrol);
+                    break;
                 default:
                     break;
             }

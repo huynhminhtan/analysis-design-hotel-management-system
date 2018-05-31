@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace GUI
         public UserControlLapPhieuThue()
         {
             InitializeComponent();
+            CultureInfo culture = new CultureInfo("pt-BR");
+            txtboxNgayLapPhieuThue.Text = DateTime.Today.ToString("d", culture);
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
