@@ -1,20 +1,21 @@
-﻿using DTO;
-using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
+using Npgsql;
 
 namespace DAO
 {
-    public class KhachHangDAO
+    public class LapPhieuThueDAO
     {
+
         #region Retrieving
 
-        public static KhachHangDTO LayKhachHangTheoMaKhachHang(String mkh)
+        public static PhieuThueDTO LayPhieuThueMoiNhat()
         {
-            KhachHangDTO khachhang = new KhachHangDTO();
+            PhieuThueDTO phieuthue = new PhieuThueDTO();
 
             try
             {
@@ -32,25 +33,22 @@ namespace DAO
                 }
 
                 // quite complex sql statement
-                string sql = "SELECT * FROM khachhang Where makhachhang = '" + mkh + "'";
-               
+                string sql = "SELECT * FROM phieuthue ORDER BY maphieuthue DESC LIMIT 1";
+
                 NpgsqlCommand command = new NpgsqlCommand(sql, conn);
                 NpgsqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    khachhang.MaKhachHang = reader[0].ToString();
-                    khachhang.HoTen = reader[1].ToString();
-                    khachhang.CMND = reader[2].ToString();
-                    khachhang.NgaySinh = DateTime.Parse(reader[3].ToString());
-                    khachhang.GioiTinh = reader[4].ToString();
-                    khachhang.DiaChi = reader[5].ToString();
-                    khachhang.Sdt = reader[6].ToString();
-                    khachhang.MaLoaiKhachHang = reader[7].ToString();
+                    phieuthue.MaPhieuThue = reader[0].ToString();
+                    phieuthue.MaKhachHang = reader[1].ToString();
+                    phieuthue.MaNhanVien = reader[2].ToString();
+                    phieuthue.NgayLap = DateTime.Parse(reader[3].ToString());
+                    phieuthue.SoLuongPhong = Int32.Parse(reader[4].ToString());
                 }
 
                 conn.Close();
-                return khachhang;
+                return phieuthue;
 
             }
             catch (Exception msg)
@@ -62,5 +60,6 @@ namespace DAO
         }
 
         #endregion
+
     }
 }

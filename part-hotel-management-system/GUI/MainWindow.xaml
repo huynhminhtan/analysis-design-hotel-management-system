@@ -67,7 +67,7 @@
                 </Button>
             </Grid>
 
-            <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="0" SelectionChanged="ListViewMenu_SelectionChanged">
+            <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="1" SelectionChanged="ListViewMenu_SelectionChanged">
                 <ListViewItem x:Name="MenuQuanLyPhong" Height="57.5">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>

@@ -43,6 +43,9 @@ namespace GUI
             khachhang = BUS.LapPhieuThueBUS.LayKhachHangTheoMaKhachHang(maKhachHang);
             txtboxMaKhachHangPhieuThue.Text = khachhang.MaKhachHang;
             txtboxTenKhachHangPhieuThue.Text = khachhang.HoTen;
+
+            String mpt = BUS.LapPhieuThueBUS.LayPhieuThueMoiNhat().MaPhieuThue;
+            txtboxMaPhieuThue.Text = TangMaPhieuThue("PT", mpt);
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
@@ -51,6 +54,22 @@ namespace GUI
             Grid gridmain = ((Grid)this.Parent);
             gridmain.Children.Clear();
             gridmain.Children.Add(usercontrol);
+        }
+
+        private string TangMaPhieuThue(String tiento, String ma)
+        {
+            String maTang = "";
+
+            if (ma == null)
+            {
+                maTang = tiento + "000";
+            }
+            else
+            {
+                maTang = tiento + ((Int32.Parse(ma.Substring(2)) + 1).ToString().PadLeft(3, '0'));
+            }
+
+            return maTang;
         }
     }
 }

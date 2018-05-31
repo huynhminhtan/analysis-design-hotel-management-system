@@ -15,5 +15,9 @@ namespace BUS
             return KhachHangDAO.LayKhachHangTheoMaKhachHang(mkh);
         }
 
+        public static PhieuThueDTO LayPhieuThueMoiNhat()
+        {
+            return LapPhieuThueDAO.LayPhieuThueMoiNhat();
+        }
     }
 }
