@@ -145,7 +145,7 @@
 
             <Grid Grid.Column="1">
 
-                <Button Name="btnLapPhieuThue" Content="Lập Phiếu Thuê" Margin="7,2" Click="btnLapPhieuThue_Click"></Button>
+                <Button Name="btnLapPhieuThue" IsEnabled="False" Content="Lập Phiếu Thuê" Margin="7,2" Click="btnLapPhieuThue_Click"></Button>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -163,7 +163,7 @@
         </Grid>
 
         <Grid Grid.Row="10">
-            <DataGrid Name="dgvDanhSachKhachHang" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
+            <DataGrid Name="dgvDanhSachKhachHang" SelectionChanged="DataGrid_SelectionChanged" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" CanUserResizeColumns="False" CanUserResizeRows="False">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Width="1*" Header="Mã KH" Binding="{Binding makhachhang}"></DataGridTextColumn>

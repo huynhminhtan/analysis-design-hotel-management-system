@@ -115,7 +115,7 @@ namespace GUI
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            btnLapPhieuThue.IsEnabled  = true;
         }
 
         private void txtboxMaKhachHang_TextChanged(object sender, TextChangedEventArgs e)
