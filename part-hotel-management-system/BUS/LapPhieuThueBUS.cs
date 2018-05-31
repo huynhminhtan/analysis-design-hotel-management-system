@@ -25,5 +25,15 @@ namespace BUS
         {
             return LapPhieuThueDAO.LayDanhSachPhieuThue();
         }
+
+        public static NpgsqlDataAdapter TimKiemPhieuThue(PhieuThueDTO pt)
+        {
+            return LapPhieuThueDAO.TimKiemPhieuThue(pt);
+        }
+
+        public static NpgsqlDataAdapter TimKiemPhieuThueTheoNgayLap(PhieuThueDTO pt)
+        {
+            return LapPhieuThueDAO.TimKiemPhieuThueTheoNgayLap(pt);
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace DAO
                     phieuthue.NgayLap = DateTime.Parse(reader[3].ToString());
                     phieuthue.SoLuongPhong = Int32.Parse(reader[4].ToString());
 
-                    if(reader[2].ToString() == "true")
+                    if (reader[2].ToString() == "true")
                     {
                         phieuthue.TinhTrang = true;
                     }
@@ -74,7 +74,7 @@ namespace DAO
             {
                 // Making connection with Npgsql provider
                 NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
-               
+
                 try
                 {
                     conn.Open();
@@ -85,7 +85,7 @@ namespace DAO
                     throw;
                 }
                 // quite complex sql statement
-                string sql = "SELECT * FROM phieuthue";
+                string sql = "SELECT phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap FROM phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang";
                 // data adapter making request from our connection
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
 
@@ -98,6 +98,58 @@ namespace DAO
                 throw msg;
             }
         }
+
+        public static NpgsqlDataAdapter TimKiemPhieuThue(PhieuThueDTO pt)
+        {
+            try
+            {
+                // Making connection with Npgsql provider
+                NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
+                conn.Open();
+                // quite complex sql statement
+                string sql = "select phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap  from phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang AND maphieuthue LIKE '%" + pt.MaPhieuThue + "%' AND phieuthue.makhachhang LIKE '%" + pt.MaKhachHang + "%' AND hoten LIKE '%" + pt.HoTenKhachHang + "%'";
+
+                // data adapter making request from our connection
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+
+                conn.Close();
+                return da;
+
+            }
+            catch (Exception msg)
+            {
+                // something went wrong, and you wanna know why
+                //MessageBox.Show(msg.ToString());
+                throw msg;
+            }
+        }
+
+
+        public static NpgsqlDataAdapter TimKiemPhieuThueTheoNgayLap(PhieuThueDTO pt)
+        {
+            try
+            {
+                // Making connection with Npgsql provider
+                NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
+                conn.Open();
+                // quite complex sql statement
+                string sql = "select phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap  from phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang AND maphieuthue LIKE '%" + pt.MaPhieuThue + "%' AND phieuthue.makhachhang LIKE '%" + pt.MaKhachHang + "%' AND hoten LIKE '%" + pt.HoTenKhachHang + "%' AND ngaylap = '" + pt.NgayLap + "'";
+
+                // data adapter making request from our connection
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+
+                conn.Close();
+                return da;
+
+            }
+            catch (Exception msg)
+            {
+                // something went wrong, and you wanna know why
+                //MessageBox.Show(msg.ToString());
+                throw msg;
+            }
+        }
+
 
         #endregion
 

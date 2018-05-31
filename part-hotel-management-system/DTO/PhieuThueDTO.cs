@@ -17,6 +17,7 @@ namespace DTO
         private DateTime ngayLap;
         private int soLuongPhong;
         private Boolean tinhTrang;
+        private String hoTenKhachHang;
 
         #endregion
 
@@ -27,6 +28,7 @@ namespace DTO
         public DateTime NgayLap { get => ngayLap; set => ngayLap = value; }
         public int SoLuongPhong { get => soLuongPhong; set => soLuongPhong = value; }
         public bool TinhTrang { get => tinhTrang; set => tinhTrang = value; }
+        public string HoTenKhachHang { get => hoTenKhachHang; set => hoTenKhachHang = value; }
 
         #endregion
 
