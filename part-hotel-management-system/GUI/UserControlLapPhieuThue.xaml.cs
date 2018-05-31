@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,11 +22,27 @@ namespace GUI
     /// </summary>
     public partial class UserControlLapPhieuThue : UserControl
     {
+        private String maKhachHang;
         public UserControlLapPhieuThue()
         {
             InitializeComponent();
             CultureInfo culture = new CultureInfo("pt-BR");
             txtboxNgayLapPhieuThue.Text = DateTime.Today.ToString("d", culture);
+        }
+
+        public UserControlLapPhieuThue(String mkh)
+        {
+            InitializeComponent();
+            CultureInfo culture = new CultureInfo("pt-BR");
+            txtboxNgayLapPhieuThue.Text = DateTime.Today.ToString("d", culture);
+
+            maKhachHang = mkh;
+
+            // get maKhachHang and tenKhachHang
+            KhachHangDTO khachhang = new KhachHangDTO();
+            khachhang = BUS.LapPhieuThueBUS.LayKhachHangTheoMaKhachHang(maKhachHang);
+            txtboxMaKhachHangPhieuThue.Text = khachhang.MaKhachHang;
+            txtboxTenKhachHangPhieuThue.Text = khachhang.HoTen;
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)

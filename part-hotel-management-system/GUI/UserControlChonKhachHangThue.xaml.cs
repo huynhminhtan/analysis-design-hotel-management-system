@@ -103,7 +103,11 @@ namespace GUI
 
         private void btnLapPhieuThue_Click(object sender, RoutedEventArgs e)
         {
-            UserControl usercontrol = new UserControlLapPhieuThue();
+            // select makhachhang was selected
+            DataRowView dataRow = (DataRowView)dgvDanhSachKhachHang.SelectedItem;
+            string makhachhang = dataRow.Row.ItemArray[0].ToString();
+
+            UserControl usercontrol = new UserControlLapPhieuThue(makhachhang);
             Grid gridmain = ((Grid)this.Parent);
             gridmain.Children.Clear();
             gridmain.Children.Add(usercontrol);
