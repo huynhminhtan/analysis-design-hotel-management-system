@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DAO">
-      <HintPath>..\DAO\bin\Debug\DAO.dll</HintPath>
-    </Reference>
-    <Reference Include="DTO">
-      <HintPath>..\DTO\bin\Debug\DTO.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\lib\Mono.Security.dll</HintPath>
     </Reference>
@@ -55,6 +49,16 @@
     <Compile Include="KhachHangLapPhieuThueBUS.cs" />
     <Compile Include="LapPhieuThueBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{f9f484d5-4576-41f7-b6a8-a8e0dbde594f}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{95224749-bde7-4f6d-aaf4-fd5b54bfaa3d}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
