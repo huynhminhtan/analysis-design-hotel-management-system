@@ -25,6 +25,17 @@ namespace DTO
             this.tongTien = _tongtien;
         }
 
+        public ChiTietPhieuThueDTO(string maPhong, string tenPhong, string maLoaiPhong, double donGia, DateTime ngayThue, DateTime ngayTra, double tongTien)
+        {
+            this.maPhong = maPhong;
+            this.tenPhong = tenPhong;
+            this.maLoaiPhong = maLoaiPhong;
+            this.donGia = donGia;
+            this.ngayThue = ngayThue;
+            this.ngayTra = ngayTra;
+            this.tongTien = tongTien;
+        }
+
 
         #endregion
 

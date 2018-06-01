@@ -35,5 +35,16 @@ namespace BUS
         {
             return LapPhieuThueDAO.TimKiemPhieuThueTheoNgayLap(pt);
         }
+
+        public static PhongDTO LayPhongTheoMaPhong(String mph)
+        {
+            return PhongDAO.LayPhongTheoMaPhong(mph);
+        }
+
+        public static PhongDTO LayPhongTheoTenPhong(String tenphong)
+        {
+            return PhongDAO.LayPhongTheoTenPhong(tenphong);
+
+        }
     }
 }

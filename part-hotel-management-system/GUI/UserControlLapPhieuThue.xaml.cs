@@ -25,7 +25,9 @@ namespace GUI
     public partial class UserControlLapPhieuThue : UserControl
     {
         private String maKhachHang;
-        private ObservableCollection<ChiTietPhieuThueDTO> dsphieuthue = new ObservableCollection<ChiTietPhieuThueDTO>();
+        //private ObservableCollection<ChiTietPhieuThueDTO> dsphieuthue = new ObservableCollection<ChiTietPhieuThueDTO>();
+        private List<ChiTietPhieuThueDTO> dschitietphieuthue = new List<ChiTietPhieuThueDTO>();
+        private PhongDTO phongDuocChon = null;
         private DataTable dt = new DataTable();
 
         public UserControlLapPhieuThue()
@@ -81,19 +83,11 @@ namespace GUI
 
         private void btnLuuPhieuThue_Click(object sender, RoutedEventArgs e)
         {
-            //List<ChiTietPhieuThueDTO> dsphieuthue = new List<ChiTietPhieuThueDTO>();
-
-            //dsphieuthue.Add(new ChiTietPhieuThueDTO(_maphong: "PT0001", _tenphong: "Phòng VIP", _maloaiphong: "LP001", _dongia: 300000, _tongtien: 200000));
-            ////dsphieuthue.Add(new ChiTietPhieuThueDTO("PT0002", "Phòng GOLD", "LP003", 500000, 600000));
-
-            //dtgChiTietPhieuThue.ItemsSource = dsphieuthue;
+            //  insert list chitietphieuthue to DBMS
+            //dschitietphieuthue
         }
 
-        private void HienThiChiTietPhieuThue()
-        {
-            dt.Rows.Add("PT0002", "Phòng GOLD", "LP003", 500000);
-        }
-
+        
         private void TaoBang()
         {
             if (!dt.Columns.Contains("Mã phòng"))
@@ -129,55 +123,94 @@ namespace GUI
                 dt.Columns.Add("Ghi chú");
             }
 
-            //foreach (var column in dtgChiTietPhieuThue.Columns)
-            //{
-            //    column.Width = new DataGridLength(0.8, DataGridLengthUnitType.Star);
-            //}
-
             dtgChiTietPhieuThue.ItemsSource = dt.DefaultView;
         }
         private void txtMaPhong_TextChanged(object sender, TextChangedEventArgs e)
         {
+            PhongDTO phong = BUS.LapPhieuThueBUS.LayPhongTheoMaPhong(txtMaPhong.Text.ToString());
 
+            if (phong != null)
+            {
+                TxtTenPhong.Text = phong.TenPhong;
+                txtTinhTrangPhong.Text = phong.LoaiTinhTrang;
+                phongDuocChon = phong;
+            }
+            else
+            {
+                TxtTenPhong.Text = "";
+                txtTinhTrangPhong.Text = "";
+                phongDuocChon = null;
+            }
         }
 
         private void btnThemPhong_Click(object sender, RoutedEventArgs e)
         {
             // add to main list
+            ChiTietPhieuThueDTO ctpt = new ChiTietPhieuThueDTO();
+            ctpt.MaPhong = txtMaPhong.Text.ToString();
+            ctpt.TenPhong = TxtTenPhong.Text.ToString();
+            ctpt.MaLoaiPhong = phongDuocChon.MaLoaiPhong;
+            ctpt.DonGia = phongDuocChon.DonGia;
+            ctpt.NgayThue = DateTime.ParseExact(Convert.ToDateTime(dpkNgayThue.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
+                                         CultureInfo.InvariantCulture);
+            ctpt.NgayTra = DateTime.ParseExact(Convert.ToDateTime(dpkNgayTra.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
+                                         CultureInfo.InvariantCulture);
+
+            int numDaysDiff = Math.Abs(ctpt.NgayTra.Subtract(ctpt.NgayThue).Days);
+            ctpt.TongTien = numDaysDiff * ctpt.DonGia;
+            ctpt.GhiChu = txtGhiChu.Text.ToString();
+
+            // add list original
+            dschitietphieuthue.Add(ctpt);
+
+            // check validate MaPhong, TenPhong
+            PhongDTO ktphong = BUS.LapPhieuThueBUS.LayPhongTheoMaPhong(ctpt.MaPhong);
+            if (ktphong == null)
+            {
+                // throw dialog error MaPhong be incorrect
+            }
+
+            ktphong = BUS.LapPhieuThueBUS.LayPhongTheoTenPhong(ctpt.TenPhong);
+            if (ktphong == null)
+            {
+                // throw dialog error TenPhong be incorrect
+            }
+
+            // check validate NgayDen, NgayTra
+            if (ctpt.NgayTra.Subtract(ctpt.NgayThue).Days < 0)
+            {
+                // throw dialog error MaPhong be incorrect
+            }
 
             // display datagrid
-            HienThiChiTietPhieuThue();
-        }
-    }
+            HienThiChiTietPhieuThue(ctpt);
 
-    public class PhieuThueBinding
-    {
+            txtGhiChu.Text = "";
 
-        public String MaPhong
-        {
-            get;
-            set;
         }
-        public String TenPhong
+        private void HienThiChiTietPhieuThue(ChiTietPhieuThueDTO ctpt)
         {
-            get;
-            set;
-        }
-        public String MaLoaiPhong
-        {
-            get;
-            set;
-        }
-        public Double DonGia
-        {
-            get;
-            set;
-        }
-        public Double TongTien
-        {
-            get;
-            set;
+            //dt.Rows.Add("PT0002", "Phòng GOLD", "LP003", 500000);
+            dt.Rows.Add(ctpt.MaPhong, ctpt.TenPhong, ctpt.MaLoaiPhong, ctpt.DonGia, 
+                ctpt.NgayThue, ctpt.NgayTra, ctpt.TongTien, ctpt.GhiChu);
         }
 
+        private void TxtTenPhong_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PhongDTO phong = BUS.LapPhieuThueBUS.LayPhongTheoTenPhong(TxtTenPhong.Text.ToString());
+
+            if (phong != null)
+            {
+                txtMaPhong.Text = phong.MaPhong;
+                txtTinhTrangPhong.Text = phong.LoaiTinhTrang;
+                phongDuocChon = phong;
+            }
+            else
+            {
+                txtMaPhong.Text = "";
+                txtTinhTrangPhong.Text = "";
+                phongDuocChon = null;
+            }
+        }
     }
 }
