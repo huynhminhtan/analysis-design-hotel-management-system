@@ -153,5 +153,75 @@ namespace DAO
 
         #endregion
 
+
+        #region Inserting
+
+        public static Boolean ThemChiTietPhieuThue(ChiTietPhieuThueDTO ctpt)
+        {
+
+            try
+            {
+                // Making connection with Npgsql provider
+                NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
+                conn.Open();
+                // quite complex sql statement
+
+                string sqlPara = "INSERT INTO chitietphieuthue( maphieuthue, maphong, ngaynhanphong, ngaytraphong, thanhtienphong, ghichu) " +
+                    "VALUES('" + ctpt.MaPhieuThue + "', '" + ctpt.MaPhong + "', '" + ctpt.NgayThue + "', '" + ctpt.NgayTra + "', '" + ctpt.TongTien + "', '" + ctpt.GhiChu + "'); ";
+
+                //string sql = "Insert into hocsinh values('MH004', 'Hoang Trung Ba', 'Lao'," +
+                //   "array[('Cương độ', '099987723')," +
+                //   "('Lam Phiệt', '099989999')]::phuHuynh[]); ";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sqlPara, conn);
+                cmd.ExecuteNonQuery();
+
+                // data adapter making request from our connection
+                //  NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+
+                conn.Close();
+                //MessageBox.Show("okie");
+                return true;
+
+            }
+            catch (Exception)
+            {
+                // something went wrong, and you wanna know why
+                //MessageBox.Show(msg.ToString());
+                return false;
+                throw;
+            }
+        }
+
+        public static Boolean ThemPhieuThue(PhieuThueDTO pt)
+        {
+            try
+            {
+                // Making connection with Npgsql provider
+                NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
+                conn.Open();
+                // quite complex sql statement
+
+                string sqlPara = "INSERT INTO phieuthue(maphieuthue, makhachhang, manhanvien, ngaylap, soluongphong)" +
+                    " VALUES('" + pt.MaPhieuThue + "', '" + pt.MaKhachHang + "', '" + pt.MaNhanVien + "', '" + pt.NgayLap + "', '" + pt.SoLuongPhong + "'); ";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sqlPara, conn);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                //MessageBox.Show("okie");
+                return true;
+
+            }
+            catch (Exception)
+            {
+                // something went wrong, and you wanna know why
+                //MessageBox.Show(msg.ToString());
+                return false;
+                throw;
+            }
+        }
+
+        #endregion
     }
 }

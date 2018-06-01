@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,6 +30,7 @@ namespace GUI
         private List<ChiTietPhieuThueDTO> dschitietphieuthue = new List<ChiTietPhieuThueDTO>();
         private PhongDTO phongDuocChon = null;
         private DataTable dt = new DataTable();
+        private NhanVienDTO nhanvien = new NhanVienDTO();
 
         public UserControlLapPhieuThue()
         {
@@ -55,6 +57,12 @@ namespace GUI
             txtboxMaPhieuThue.Text = TangMaPhieuThue("PT", mpt);
 
             TaoBang();
+
+
+            nhanvien.MaNhanVien = "NV001";
+            nhanvien.TenNhanVien = "Ngọc Hiền";
+
+            txtTenNhanVien.Text = nhanvien.TenNhanVien;
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
@@ -83,11 +91,37 @@ namespace GUI
 
         private void btnLuuPhieuThue_Click(object sender, RoutedEventArgs e)
         {
-            //  insert list chitietphieuthue to DBMS
-            //dschitietphieuthue
+            Boolean kt = true;
+
+            // prepare insert phieuthue
+            PhieuThueDTO pt = new PhieuThueDTO();
+            pt.MaPhieuThue = txtboxMaPhieuThue.Text.ToString();
+            pt.MaKhachHang = txtboxMaKhachHangPhieuThue.Text.ToString();
+            pt.MaNhanVien = nhanvien.MaNhanVien;
+            pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(txtboxNgayLapPhieuThue.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
+                                          CultureInfo.InvariantCulture);
+            pt.SoLuongPhong = dschitietphieuthue.Count;
+            pt.TinhTrang = true;
+
+          
+
+            //insert phieuthue
+            kt = LapPhieuThueBUS.ThemPhieuThue(pt);
+
+            // insert danhsachphieuthue
+            kt = LapPhieuThueBUS.ThemDanhSachChiTietPhieuThue(dschitietphieuthue);
+
+            if (kt == false)
+            {
+                // error did'n insert database
+            }
+            else
+            {
+                // shoe dialog insert success
+            }
+             
         }
 
-        
         private void TaoBang()
         {
             if (!dt.Columns.Contains("Mã phòng"))
@@ -145,8 +179,17 @@ namespace GUI
 
         private void btnThemPhong_Click(object sender, RoutedEventArgs e)
         {
-            // add to main list
-            ChiTietPhieuThueDTO ctpt = new ChiTietPhieuThueDTO();
+            if (txtboxMaKhachHangPhieuThue.Text.ToString() == "" ||
+              TxtTenPhong.Text.ToString() == "" ||
+              dpkNgayThue.Text.ToString() == "" ||
+              dpkNgayTra.Text.ToString() == "")
+            {
+                // note error not empty
+                return;
+            }
+                // add to main list
+                ChiTietPhieuThueDTO ctpt = new ChiTietPhieuThueDTO();
+            ctpt.MaPhieuThue = txtboxMaPhieuThue.Text.ToString();
             ctpt.MaPhong = txtMaPhong.Text.ToString();
             ctpt.TenPhong = TxtTenPhong.Text.ToString();
             ctpt.MaLoaiPhong = phongDuocChon.MaLoaiPhong;
@@ -191,7 +234,7 @@ namespace GUI
         private void HienThiChiTietPhieuThue(ChiTietPhieuThueDTO ctpt)
         {
             //dt.Rows.Add("PT0002", "Phòng GOLD", "LP003", 500000);
-            dt.Rows.Add(ctpt.MaPhong, ctpt.TenPhong, ctpt.MaLoaiPhong, ctpt.DonGia, 
+            dt.Rows.Add(ctpt.MaPhong, ctpt.TenPhong, ctpt.MaLoaiPhong, ctpt.DonGia,
                 ctpt.NgayThue, ctpt.NgayTra, ctpt.TongTien, ctpt.GhiChu);
         }
 

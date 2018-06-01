@@ -16,16 +16,7 @@ namespace DTO
 
         }
 
-        public ChiTietPhieuThueDTO(String _maphong, String _tenphong, String _maloaiphong, double _dongia, double _tongtien)
-        {
-            this.maPhong = _maphong;
-            this.tenPhong = _tenphong;
-            this.maLoaiPhong = _maloaiphong;
-            this.donGia = _dongia;
-            this.tongTien = _tongtien;
-        }
-
-        public ChiTietPhieuThueDTO(string maPhong, string tenPhong, string maLoaiPhong, double donGia, DateTime ngayThue, DateTime ngayTra, double tongTien)
+        public ChiTietPhieuThueDTO(string maPhong, string tenPhong, string maLoaiPhong, double donGia, DateTime ngayThue, DateTime ngayTra, double tongTien, string ghiChu, string maPhieuThue)
         {
             this.maPhong = maPhong;
             this.tenPhong = tenPhong;
@@ -34,9 +25,9 @@ namespace DTO
             this.ngayThue = ngayThue;
             this.ngayTra = ngayTra;
             this.tongTien = tongTien;
+            this.ghiChu = ghiChu;
+            this.maPhieuThue = maPhieuThue;
         }
-
-
         #endregion
 
         #region Attributes
@@ -49,6 +40,7 @@ namespace DTO
         private DateTime ngayTra;
         private Double tongTien;
         private String ghiChu;
+        private String maPhieuThue;
 
         #endregion
 
@@ -61,6 +53,7 @@ namespace DTO
         public DateTime NgayTra { get => ngayTra; set => ngayTra = value; }
         public double TongTien { get => tongTien; set => tongTien = value; }
         public string GhiChu { get => ghiChu; set => ghiChu = value; }
+        public string MaPhieuThue { get => maPhieuThue; set => maPhieuThue = value; }
 
         #endregion
 

@@ -46,5 +46,24 @@ namespace BUS
             return PhongDAO.LayPhongTheoTenPhong(tenphong);
 
         }
+
+        public static Boolean ThemDanhSachChiTietPhieuThue(List<ChiTietPhieuThueDTO> dsctpt)
+        {
+            foreach (ChiTietPhieuThueDTO ctpt in dsctpt)
+            {
+                if (LapPhieuThueDAO.ThemChiTietPhieuThue(ctpt) == false)
+                {
+                    return false;
+                };
+            }
+
+            return true;
+        }
+
+        public static Boolean ThemPhieuThue(PhieuThueDTO pt)
+        {
+            return LapPhieuThueDAO.ThemPhieuThue(pt);
+        }
+
     }
 }
