@@ -22,6 +22,8 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="2.2*"></RowDefinition>
@@ -48,7 +50,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <TextBox Name="txtboxMaPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"/>
+                <TextBox Name="txtboxMaPhieuThue" VerticalContentAlignment="Bottom" FontSize="15" IsReadOnly="True" Focusable="False"/>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -56,7 +58,7 @@
             </Grid>
 
             <Grid Grid.Column="3">
-                <TextBox Name="txtboxNgayLapPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>
+                <TextBox Name="txtboxNgayLapPhieuThue" VerticalContentAlignment="Bottom" FontSize="15" IsReadOnly="True" Focusable="False"/>
             </Grid>
 
         </Grid>
@@ -74,7 +76,11 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <TextBox Name="txtboxMaKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="txtboxMaKhachHangPhieuThue" VerticalContentAlignment="Bottom" FontSize="15" IsReadOnly="True" Focusable="False" Grid.ColumnSpan="2"/>
             </Grid>
 
             <Grid Grid.Column="2">
@@ -82,47 +88,125 @@
             </Grid>
 
             <Grid Grid.Column="3">
-                <TextBox Name="txtboxTenKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14*"/>
+                    <ColumnDefinition Width="39*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="txtboxTenKhachHangPhieuThue" VerticalContentAlignment="Bottom" FontSize="15" IsReadOnly="True" Focusable="False" Grid.ColumnSpan="2"/>
             </Grid>
 
         </Grid>
 
         <Grid Grid.Row="4">
-            <TextBlock Text="Chi Tiết Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Label Content="Mã phòng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <TextBox Name="txtMaPhong" VerticalContentAlignment="Center" FontSize="15" TextChanged="txtMaPhong_TextChanged"/>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Label Content="Tên phòng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <TextBox Name="TxtTenPhong" VerticalContentAlignment="Center" FontSize="15"/>
+            </Grid>
+
         </Grid>
 
         <Grid Grid.Row="5">
-            <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Label Content="Ngày đến" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <DatePicker HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top" Width="90"/>
+                <!--<TextBox Name="txtsdsboxMaKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>-->
+
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Label Content="Ngày đi" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <!--<TextBox Name="txtbodssxTenKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>-->
+                <DatePicker HorizontalAlignment="Left" Margin="0,7,0,0" VerticalAlignment="Top" Width="90"/>
+            </Grid>
+
+            <Grid Grid.Column="4">
+                <Label Content="Tình trạng phòng" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"></Label>
+            </Grid>
+
+            <Grid Grid.Column="5">
+                <TextBox Name="txtTinhTrangPhong" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"/>
+            </Grid>
+
         </Grid>
 
         <Grid Grid.Row="6">
-            <DataGrid Name="dtgChiTietPhieuThue" SelectionMode="Single" SelectionUnit="Cell" IsReadOnly="False" CanUserResizeColumns="False" CanUserResizeRows="False">
+            <TextBlock Text="Chi Tiết Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="7">
+            <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="8">
+            <DataGrid Name="dtgChiTietPhieuThue"  ColumnWidth="1.2*"  SelectionMode="Single" SelectionUnit="Cell" IsReadOnly="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="0.5*" Header="STT"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Mã Phòng"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.5*" Header="Tên Phòng"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="Loại Phòng" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="Đơn Giá" IsReadOnly="True"></DataGridTextColumn>
+                    <!--<DataGridTextColumn Width="1.5*" Header="Mã Phòng"  Binding="{Binding MaPhong}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.5*" Header="Tên Phòng"  Binding="{Binding TenPhong}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Loại Phòng" IsReadOnly="True" Binding="{Binding MaLoaiPhong}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Đơn Giá" IsReadOnly="True" Binding="{Binding DonGia}"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.2*" Header="Ngày Thuê"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.2*" Header="Ngày Trả"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="Tổng Tiền" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Width="1.2*" Header="Ghi Chú"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Tổng Tiền" IsReadOnly="True" Binding="{Binding TongTien}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1.2*" Header="Ghi Chú"></DataGridTextColumn>-->
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Row="7">
+        <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+
             <Grid Grid.Column="0">
-                <Button Name="btnLuuPhieuThue" Content="Lưu Phiếu Thuê" Margin="7,2"></Button>
+                <Button Name="btnThemPhong" Content="Thêm phòng" Margin="0,2" Click="btnThemPhong_Click" ></Button>
             </Grid>
 
             <Grid Grid.Column="1">
-                <Button Name="btnThoat" Content="Thoát" Margin="7,2" Click="btnThoat_Click"></Button>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btnLuuPhieuThue" Content="Lưu Phiếu Thuê" Margin="10,2" Click="btnLuuPhieuThue_Click" ></Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Button Name="btnThoat" Content="Thoát" Margin="10,2,0,2" Click="btnThoat_Click"></Button>
             </Grid>
         </Grid>
     </Grid>
