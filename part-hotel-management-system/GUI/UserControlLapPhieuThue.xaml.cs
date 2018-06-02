@@ -99,8 +99,10 @@ namespace GUI
             pt.MaPhieuThue = txtboxMaPhieuThue.Text.ToString();
             pt.MaKhachHang = txtboxMaKhachHangPhieuThue.Text.ToString();
             pt.MaNhanVien = nhanvien.MaNhanVien;
-            pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(txtboxNgayLapPhieuThue.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
-                                          CultureInfo.InvariantCulture);
+            pt.NgayLap = DateTime.Today;
+            //pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(
+            //    txtboxNgayLapPhieuThue.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
+            //                              CultureInfo.InvariantCulture);
             pt.SoLuongPhong = dschitietphieuthue.Count;
             pt.TinhTrang = true;
 

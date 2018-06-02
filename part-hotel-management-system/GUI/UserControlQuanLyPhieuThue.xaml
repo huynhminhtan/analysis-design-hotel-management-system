@@ -110,7 +110,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <Button Name="btnCapNhatPhieuThue" Content="Cập Nhật Phiếu Thuê" Margin="7,2"></Button>
+                <Button Name="btnCapNhatPhieuThue" Content="Cập Nhật Phiếu Thuê" Margin="7,2" Click="btnCapNhatPhieuThue_Click"></Button>
             </Grid>
 
             <Grid Grid.Column="2">
