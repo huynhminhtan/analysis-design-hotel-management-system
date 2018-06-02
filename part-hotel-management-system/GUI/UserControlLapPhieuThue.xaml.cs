@@ -43,6 +43,7 @@ namespace GUI
         public UserControlLapPhieuThue(String mkh)
         {
             InitializeComponent();
+
             CultureInfo culture = new CultureInfo("pt-BR");
             txtboxNgayLapPhieuThue.Text = DateTime.Today.ToString("d", culture);
 
@@ -64,6 +65,8 @@ namespace GUI
             nhanvien.TenNhanVien = "Ngọc Hiền";
 
             txtTenNhanVien.Text = nhanvien.TenNhanVien;
+            dpkNgayThue.Text = DateTime.Today.ToString("MM/dd/yyyy", culture);
+
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
