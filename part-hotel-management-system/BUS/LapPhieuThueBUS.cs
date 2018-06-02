@@ -55,6 +55,11 @@ namespace BUS
                 {
                     return false;
                 };
+
+                if (PhongDAO.CapNhatTinhTrangPhongTheoMaPhong(ctpt.MaPhong) == false)
+                {
+                    return false;
+                }
             }
 
             return true;
@@ -63,6 +68,11 @@ namespace BUS
         public static Boolean ThemPhieuThue(PhieuThueDTO pt)
         {
             return LapPhieuThueDAO.ThemPhieuThue(pt);
+        }
+
+        public static Boolean CapNhatTinhTrangPhongTheoMaPhong(String maphong)
+        {
+            return PhongDAO.CapNhatTinhTrangPhongTheoMaPhong(maphong);
         }
 
     }

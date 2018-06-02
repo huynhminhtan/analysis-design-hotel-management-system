@@ -14,7 +14,7 @@ namespace DTO
         private String tenPhong;
         private String maLoaiPhong;
         private String tenLoaiPhong;
-        private String loaiTinhTrang;
+        private Boolean loaiTinhTrang;
         private Double donGia;
 
         #endregion
@@ -23,7 +23,7 @@ namespace DTO
         public string MaPhong { get => maPhong; set => maPhong = value; }
         public string TenPhong { get => tenPhong; set => tenPhong = value; }
         public string MaLoaiPhong { get => maLoaiPhong; set => maLoaiPhong = value; }
-        public string LoaiTinhTrang { get => loaiTinhTrang; set => loaiTinhTrang = value; }
+        public Boolean LoaiTinhTrang { get => loaiTinhTrang; set => loaiTinhTrang = value; }
         public string TenLoaiPhong { get => tenLoaiPhong; set => tenLoaiPhong = value; }
         public double DonGia { get => donGia; set => donGia = value; }
 

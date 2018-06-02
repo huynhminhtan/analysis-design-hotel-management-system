@@ -134,6 +134,7 @@
                     <DataGridTextColumn Width="1.5*" Header="Tên Khách Hàng" Binding="{Binding hoten}"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.5*" Header="Mã Nhân Viên" Binding="{Binding manhanvien}"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.5*" Header="Ngày Lập" Binding="{Binding ngaylap}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Số phòng" Binding="{Binding soluongphong}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

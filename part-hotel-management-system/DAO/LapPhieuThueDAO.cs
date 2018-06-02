@@ -85,7 +85,7 @@ namespace DAO
                     throw;
                 }
                 // quite complex sql statement
-                string sql = "SELECT phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap FROM phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang";
+                string sql = "SELECT phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap, soluongphong FROM phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang";
                 // data adapter making request from our connection
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
 
@@ -107,7 +107,7 @@ namespace DAO
                 NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
                 conn.Open();
                 // quite complex sql statement
-                string sql = "select phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap  from phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang AND maphieuthue LIKE '%" + pt.MaPhieuThue + "%' AND phieuthue.makhachhang LIKE '%" + pt.MaKhachHang + "%' AND hoten LIKE '%" + pt.HoTenKhachHang + "%'";
+                string sql = "select phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap, soluongphong  from phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang AND maphieuthue LIKE '%" + pt.MaPhieuThue + "%' AND phieuthue.makhachhang LIKE '%" + pt.MaKhachHang + "%' AND hoten LIKE '%" + pt.HoTenKhachHang + "%'";
 
                 // data adapter making request from our connection
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
@@ -133,7 +133,7 @@ namespace DAO
                 NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
                 conn.Open();
                 // quite complex sql statement
-                string sql = "select phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap  from phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang AND maphieuthue LIKE '%" + pt.MaPhieuThue + "%' AND phieuthue.makhachhang LIKE '%" + pt.MaKhachHang + "%' AND hoten LIKE '%" + pt.HoTenKhachHang + "%' AND ngaylap = '" + pt.NgayLap + "'";
+                string sql = "select phieuthue.maphieuthue, phieuthue.makhachhang, hoten, manhanvien, ngaylap, soluongphong  from phieuthue, khachhang WHERE phieuthue.makhachhang = khachhang.makhachhang AND maphieuthue LIKE '%" + pt.MaPhieuThue + "%' AND phieuthue.makhachhang LIKE '%" + pt.MaKhachHang + "%' AND hoten LIKE '%" + pt.HoTenKhachHang + "%' AND ngaylap = '" + pt.NgayLap + "'";
 
                 // data adapter making request from our connection
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
