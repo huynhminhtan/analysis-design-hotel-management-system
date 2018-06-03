@@ -45,7 +45,15 @@ namespace DAO
                     phong.MaLoaiPhong = reader[2].ToString();
                     phong.TenLoaiPhong = reader[3].ToString();
                     phong.DonGia = Double.Parse(reader[4].ToString());
-                    phong.LoaiTinhTrang = reader[5].ToString();
+
+                    if (reader[5].ToString() == "True")
+                    {
+                        phong.LoaiTinhTrang = true;
+                    }
+                    else
+                    {
+                        phong.LoaiTinhTrang = false;
+                    }
                 }
 
                 conn.Close();
@@ -93,7 +101,15 @@ namespace DAO
                     phong.MaLoaiPhong = reader[2].ToString();
                     phong.TenLoaiPhong = reader[3].ToString();
                     phong.DonGia = Double.Parse(reader[4].ToString());
-                    phong.LoaiTinhTrang = reader[5].ToString();
+
+                    if (reader[5].ToString() == "true")
+                    {
+                        phong.LoaiTinhTrang = true;
+                    }
+                    else
+                    {
+                        phong.LoaiTinhTrang = false;
+                    }
                 }
 
                 conn.Close();
@@ -105,6 +121,37 @@ namespace DAO
                 // something went wrong, and you wanna know why
 
                 throw msg;
+            }
+        }
+        #endregion
+
+        #region Updating
+        public static Boolean CapNhatTinhTrangPhongTheoMaPhong(String maphong)
+        {
+
+            try
+            {
+                // Making connection with Npgsql provider
+                NpgsqlConnection conn = new NpgsqlConnection(SqlDataAccessHelper.ConnectionString());
+                conn.Open();
+                // quite complex sql statement
+
+                string sqlPara = "UPDATE phong SET tinhtrang=true WHERE maphong='" + maphong + "';";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(sqlPara, conn);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                //MessageBox.Show("okie");
+                return true;
+
+            }
+            catch (Exception)
+            {
+                // something went wrong, and you wanna know why
+                //MessageBox.Show(msg.ToString());
+                return false;
+                throw;
             }
         }
         #endregion

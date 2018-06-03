@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,7 @@ namespace GUI
 
             //pt.NgayLap = DateTime.ParseExact(txtboxNgayLapPhieuThue.Text, "d", null);
 
-           NpgsqlDataAdapter da = BUS.LapPhieuThueBUS.TimKiemPhieuThue(pt);
+            NpgsqlDataAdapter da = BUS.LapPhieuThueBUS.TimKiemPhieuThue(pt);
 
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -161,7 +162,7 @@ namespace GUI
 
         private void dpkNgayLap_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-           if (dpkNgayLap.Text.ToString() != "")
+            if (dpkNgayLap.Text.ToString() != "")
             {
                 LayDanhSachPhieuThueTimKiemTheoNgayLap();
             }
@@ -169,6 +170,28 @@ namespace GUI
             {
                 LayDanhSachPhieuThueTimKiem();
             }
+        }
+
+        private void btnCapNhatPhieuThue_Click(object sender, RoutedEventArgs e)
+        {
+            // date format theo kiểu MM-DD-YYYY
+            // pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(dpkNgayLap.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",CultureInfo.InvariantCulture);
+
+            DateTime test = DateTime.ParseExact(Convert.ToDateTime(dpkNgayLap.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
+                                         CultureInfo.InvariantCulture);
+
+            List<BaoCaoDoanhThuPhongDTO> dsbcdtp =
+               BaoCaoDoanhThuPhongBUS.LayDanhSachBaoCaoDoanhThuPhong(test, test);
+
+            if (dsbcdtp == null)
+            {
+                // không có phòng được thuê trong thời gian đó
+                return;
+            }
+
+            // process here
+
+
         }
     }
 }

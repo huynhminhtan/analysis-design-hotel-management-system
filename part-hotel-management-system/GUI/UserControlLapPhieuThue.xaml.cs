@@ -1,8 +1,10 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -29,6 +31,7 @@ namespace GUI
         private List<ChiTietPhieuThueDTO> dschitietphieuthue = new List<ChiTietPhieuThueDTO>();
         private PhongDTO phongDuocChon = null;
         private DataTable dt = new DataTable();
+        private NhanVienDTO nhanvien = new NhanVienDTO();
 
         public UserControlLapPhieuThue()
         {
@@ -40,6 +43,7 @@ namespace GUI
         public UserControlLapPhieuThue(String mkh)
         {
             InitializeComponent();
+
             CultureInfo culture = new CultureInfo("pt-BR");
             txtboxNgayLapPhieuThue.Text = DateTime.Today.ToString("d", culture);
 
@@ -55,6 +59,14 @@ namespace GUI
             txtboxMaPhieuThue.Text = TangMaPhieuThue("PT", mpt);
 
             TaoBang();
+
+
+            nhanvien.MaNhanVien = "NV001";
+            nhanvien.TenNhanVien = "Ngọc Hiền";
+
+            txtTenNhanVien.Text = nhanvien.TenNhanVien;
+            dpkNgayThue.Text = DateTime.Today.ToString("MM/dd/yyyy", culture);
+
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
@@ -83,11 +95,41 @@ namespace GUI
 
         private void btnLuuPhieuThue_Click(object sender, RoutedEventArgs e)
         {
-            //  insert list chitietphieuthue to DBMS
-            //dschitietphieuthue
+            Boolean kt = true;
+
+            // prepare insert phieuthue
+            PhieuThueDTO pt = new PhieuThueDTO();
+            pt.MaPhieuThue = txtboxMaPhieuThue.Text.ToString();
+            pt.MaKhachHang = txtboxMaKhachHangPhieuThue.Text.ToString();
+            pt.MaNhanVien = nhanvien.MaNhanVien;
+            pt.NgayLap = DateTime.Today;
+            //pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(
+            //    txtboxNgayLapPhieuThue.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
+            //                              CultureInfo.InvariantCulture);
+            pt.SoLuongPhong = dschitietphieuthue.Count;
+            pt.TinhTrang = true;
+
+            //insert phieuthue
+            kt = LapPhieuThueBUS.ThemPhieuThue(pt);
+
+            // insert danhsachphieuthue
+            kt = LapPhieuThueBUS.ThemDanhSachChiTietPhieuThue(dschitietphieuthue);
+
+            if (kt == false)
+            {
+                Debug.Print("error insert database");
+                // error did'n insert database
+            }
+            else
+            {
+                Debug.Print("insert phieuthue success");
+                // dialog
+                // Lập phiếu thuê thành công
+                // shoe dialog insert success
+            }
+
         }
 
-        
         private void TaoBang()
         {
             if (!dt.Columns.Contains("Mã phòng"))
@@ -125,28 +167,35 @@ namespace GUI
 
             dtgChiTietPhieuThue.ItemsSource = dt.DefaultView;
         }
-        private void txtMaPhong_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            PhongDTO phong = BUS.LapPhieuThueBUS.LayPhongTheoMaPhong(txtMaPhong.Text.ToString());
-
-            if (phong != null)
-            {
-                TxtTenPhong.Text = phong.TenPhong;
-                txtTinhTrangPhong.Text = phong.LoaiTinhTrang;
-                phongDuocChon = phong;
-            }
-            else
-            {
-                TxtTenPhong.Text = "";
-                txtTinhTrangPhong.Text = "";
-                phongDuocChon = null;
-            }
-        }
 
         private void btnThemPhong_Click(object sender, RoutedEventArgs e)
         {
+
+            if (phongDuocChon == null ||
+                    txtboxMaKhachHangPhieuThue.Text.ToString() == "" ||
+                    TxtTenPhong.Text.ToString() == "" ||
+                    dpkNgayThue.Text.ToString() == "" ||
+                    dpkNgayTra.Text.ToString() == "")
+            {
+                // dialog
+                // thông báo ko cho để trống 
+                // note error not empty
+                Debug.Print("NHAP THONG TIN THUE");
+                return;
+            }
+
+            if (phongDuocChon.LoaiTinhTrang)
+            {
+                // dialog
+                // phòng đã được thuê
+                // phong not empty
+                Debug.Print("PHONG IS NOT EMPTY");
+                return;
+            }
+
             // add to main list
             ChiTietPhieuThueDTO ctpt = new ChiTietPhieuThueDTO();
+            ctpt.MaPhieuThue = txtboxMaPhieuThue.Text.ToString();
             ctpt.MaPhong = txtMaPhong.Text.ToString();
             ctpt.TenPhong = TxtTenPhong.Text.ToString();
             ctpt.MaLoaiPhong = phongDuocChon.MaLoaiPhong;
@@ -160,38 +209,57 @@ namespace GUI
             ctpt.TongTien = numDaysDiff * ctpt.DonGia;
             ctpt.GhiChu = txtGhiChu.Text.ToString();
 
-            // add list original
-            dschitietphieuthue.Add(ctpt);
 
             // check validate MaPhong, TenPhong
             PhongDTO ktphong = BUS.LapPhieuThueBUS.LayPhongTheoMaPhong(ctpt.MaPhong);
             if (ktphong == null)
             {
+                // dialog
+                // mã phòng không có trong hệ thống
                 // throw dialog error MaPhong be incorrect
             }
 
             ktphong = BUS.LapPhieuThueBUS.LayPhongTheoTenPhong(ctpt.TenPhong);
             if (ktphong == null)
             {
+                // dialog
+                // tên phòng không có trong hệ thống
                 // throw dialog error TenPhong be incorrect
             }
 
             // check validate NgayDen, NgayTra
             if (ctpt.NgayTra.Subtract(ctpt.NgayThue).Days < 0)
             {
-                // throw dialog error MaPhong be incorrect
+                // dialog
+                // ngày thuê > ngày trả 
+                // 
             }
+
+            // kiểm tra xem phòng đã được thêm vào danh sách hay chưa, nếu rồi thì không được thêm
+            if (dschitietphieuthue.Exists(x => x.MaPhong == phongDuocChon.MaPhong))
+            {
+                // dialog
+                // Phòng đã thêm vào danh sách
+                Debug.Print("Phòng đã thêm vào danh sách");
+                return;
+            }
+
+            // add list original
+            dschitietphieuthue.Add(ctpt);
 
             // display datagrid
             HienThiChiTietPhieuThue(ctpt);
 
             txtGhiChu.Text = "";
+            txtMaPhong.Text = "";
+            TxtTenPhong.Text = "";
+            txtTinhTrangPhong.Text = "";
 
         }
         private void HienThiChiTietPhieuThue(ChiTietPhieuThueDTO ctpt)
         {
             //dt.Rows.Add("PT0002", "Phòng GOLD", "LP003", 500000);
-            dt.Rows.Add(ctpt.MaPhong, ctpt.TenPhong, ctpt.MaLoaiPhong, ctpt.DonGia, 
+            dt.Rows.Add(ctpt.MaPhong, ctpt.TenPhong, ctpt.MaLoaiPhong, ctpt.DonGia,
                 ctpt.NgayThue, ctpt.NgayTra, ctpt.TongTien, ctpt.GhiChu);
         }
 
@@ -202,12 +270,49 @@ namespace GUI
             if (phong != null)
             {
                 txtMaPhong.Text = phong.MaPhong;
-                txtTinhTrangPhong.Text = phong.LoaiTinhTrang;
+
+                TxtTenPhong.Text = phong.TenPhong;
+                if (phong.LoaiTinhTrang)
+                {
+                    txtTinhTrangPhong.Text = "Đã thuê";
+                }
+                else
+                {
+                    txtTinhTrangPhong.Text = "Trống";
+                }
+
                 phongDuocChon = phong;
             }
             else
             {
                 txtMaPhong.Text = "";
+                txtTinhTrangPhong.Text = "";
+                phongDuocChon = null;
+            }
+        }
+
+        private void txtMaPhong_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PhongDTO phong = BUS.LapPhieuThueBUS.LayPhongTheoMaPhong(txtMaPhong.Text.ToString());
+
+            if (phong != null)
+            {
+                TxtTenPhong.Text = phong.TenPhong;
+                if (phong.LoaiTinhTrang)
+                {
+                    txtTinhTrangPhong.Text = "Đã thuê";
+                }
+                else
+                {
+                    txtTinhTrangPhong.Text = "Trống";
+                }
+
+
+                phongDuocChon = phong;
+            }
+            else
+            {
+                TxtTenPhong.Text = "";
                 txtTinhTrangPhong.Text = "";
                 phongDuocChon = null;
             }

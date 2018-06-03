@@ -31,7 +31,23 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <TextBlock Text="Lập Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0">
+                <TextBlock Text="Lập Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <TextBlock Text="Nhân Viên:" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="10"></TextBlock>
+            </Grid>
+            
+            <Grid Grid.Column="2">
+                <TextBlock Name="txtTenNhanVien" Text="NV"  HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Margin="5,0,10,0" Background="#EEEEEEEE" Padding="5,0"/>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -162,7 +178,7 @@
             </Grid>
 
         </Grid>
-        
+
         <Grid Grid.Row="6">
 
             <Grid.ColumnDefinitions>
@@ -177,7 +193,7 @@
                 <TextBox Name="txtGhiChu" VerticalContentAlignment="Center" FontSize="15"/>
             </Grid>
         </Grid>
-        
+
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="213*"/>
@@ -186,7 +202,7 @@
             <TextBlock Text="Chi Tiết Phiếu Thuê" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20"></TextBlock>
         </Grid>
 
-    
+
 
         <Grid Grid.Row="8">
             <Rectangle Fill="Black" Stroke="Black" HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Center"/>
@@ -216,19 +232,15 @@
 
 
             <Grid Grid.Column="0">
-                <Button Name="btnThemPhong" Content="Thêm phòng" Margin="0,2" Click="btnThemPhong_Click" ></Button>
+                <Button Name="btnThemPhong" Content="Thêm phòng" Margin="10,2" Click="btnThemPhong_Click" ></Button>
             </Grid>
 
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="31*"/>
-                    <RowDefinition Height="5*"/>
-                </Grid.RowDefinitions>
                 <Button Name="btnLuuPhieuThue" Content="Lưu Phiếu Thuê" Margin="10,2" Click="btnLuuPhieuThue_Click" ></Button>
             </Grid>
 
             <Grid Grid.Column="2">
-                <Button Name="btnThoat" Content="Thoát" Margin="10,2,0,2" Click="btnThoat_Click"></Button>
+                <Button Name="btnThoat" Content="Thoát" Margin="10,2" Click="btnThoat_Click"></Button>
             </Grid>
         </Grid>
     </Grid>
