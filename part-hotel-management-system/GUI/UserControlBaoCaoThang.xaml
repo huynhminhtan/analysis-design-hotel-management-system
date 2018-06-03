@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -12,49 +13,111 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
-             mc:Ignorable="d"
-             Width="800" Height="500">
+             mc:Ignorable="d" Width="auto" Height="auto">
+
+    <UserControl.Resources>
+        <Style x:Key="CellCenterAlignment" TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="HeaderCenterAlignment" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"></RowDefinition>
-            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="40*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0">
-            <StackPanel Name="StackPanelMenu" Background="AliceBlue">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Name="GridBaoCaoDoanhThu"></Border>
+            <Border Grid.Column="1" Name="GridBaoCaoMatDo"></Border>
+
+            <StackPanel Name="StackPanelMenu" Background="AliceBlue" Grid.ColumnSpan="2">
                 <StackPanel.Effect>
                     <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#FFAEAEAE"/>
                 </StackPanel.Effect>
 
-                <ListView SelectedIndex="0">
+                <ListView Height="{Binding ElementName=GridBaoCaoDoanhThu, Path=ActualHeight}" SelectedIndex="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"></StackPanel>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
 
-                    <ListViewItem Height="{Binding ActualHeight, ElementName=StackPanelMenu}" Width="{Binding ActualWidth, ElementName=StackPanelMenu}">
+                    <ListViewItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="{Binding ElementName=GridBaoCaoDoanhThu, Path=ActualWidth}">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Quản Lý Phòng" VerticalAlignment="Center"  Margin="10,0"/>
+                            <materialDesign:PackIcon Kind="ChartDonut" Height="35" Width="35" Margin="10"/>
+                            <TextBlock Text="Báo Cáo Doanh Thu Phòng" VerticalAlignment="Center"  Margin="10,0"/>
                         </StackPanel>
                     </ListViewItem>
 
+                    <ListViewItem VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="{Binding ElementName=GridBaoCaoMatDo, Path=ActualWidth}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ChartBar" Height="35" Width="35" Margin="10"/>
+                            <TextBlock Text="Báo Cáo Mật Độ Sử Dụng Phòng" VerticalAlignment="Center"  Margin="10,0"/>
+                        </StackPanel>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+
+            <Label FontSize="15" Content="Từ" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
+            <DatePicker x:Name="dtpNgayBatDau" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Margin="0 20"></DatePicker>
+
+            <Label FontSize="15" Content="Đến" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
+            <DatePicker x:Name="dtpNgayKetThuc" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="3" Margin="0 20" DisplayDateStart="{Binding ElementName=dtpNgayBatDau, Path=SelectedDate}"></DatePicker>
+
+            <Button x:Name="btnLapBaoCao" Content="Lập Báo Cáo" Grid.Column="4" Margin="20" Click="btnLapBaoCao_Click"></Button>
         </Grid>
 
         <Grid Grid.Row="2">
             <Rectangle Stroke="Black" HorizontalAlignment="Stretch" Height="0.5" VerticalAlignment="Center" Fill="#FF423E3E"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <DataGrid Name="dtgBaoCaoDoanhThuPhong" ColumnWidth="1.2*"  SelectionMode="Single" SelectionUnit="Cell" IsReadOnly="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserAddRows="False">
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="4" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+            </Grid>
+            
+            <Grid Grid.Column="1">
+                <TextBlock Text="Tổng Doanh Thu:" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="15"></TextBlock>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <TextBlock Name="txtTongDoanhThu" Text="Test" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5,0,10,0" Background="#EEEEEEEE" Padding="5,0"/>
+            </Grid>
         </Grid>
 
     </Grid>

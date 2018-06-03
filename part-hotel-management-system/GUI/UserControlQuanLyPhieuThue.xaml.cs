@@ -171,27 +171,5 @@ namespace GUI
                 LayDanhSachPhieuThueTimKiem();
             }
         }
-
-        private void btnCapNhatPhieuThue_Click(object sender, RoutedEventArgs e)
-        {
-            // date format theo kiểu MM-DD-YYYY
-            // pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(dpkNgayLap.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",CultureInfo.InvariantCulture);
-
-            DateTime test = DateTime.ParseExact(Convert.ToDateTime(dpkNgayLap.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
-                                         CultureInfo.InvariantCulture);
-
-            List<BaoCaoDoanhThuPhongDTO> dsbcdtp =
-               BaoCaoDoanhThuPhongBUS.LayDanhSachBaoCaoDoanhThuPhong(test, test);
-
-            if (dsbcdtp == null)
-            {
-                // không có phòng được thuê trong thời gian đó
-                return;
-            }
-
-            // process here
-
-
-        }
     }
 }

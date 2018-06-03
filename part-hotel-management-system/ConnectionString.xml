@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<connectionString>Server=127.0.0.1;Port=5432;User Id=admin;Password=123456;Database=db_qlks;</connectionString>
+<connectionString>Server=127.0.0.1;Port=5432;User Id=postgres;Password=123456;Database=db_qlks;</connectionString>

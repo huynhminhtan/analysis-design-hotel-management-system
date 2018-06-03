@@ -166,7 +166,7 @@
 
             <Grid Grid.Column="3">
                 <!--<TextBox Name="txtbodssxTenKhachHangPhieuThue" Margin="0,7" VerticalContentAlignment="Center" FontSize="15" IsReadOnly="True" Focusable="False"></TextBox>-->
-                <DatePicker Name="dpkNgayTra" HorizontalAlignment="Left" Margin="0,7,0,0" VerticalAlignment="Top" Width="90"/>
+                <DatePicker Name="dpkNgayTra" HorizontalAlignment="Left" Margin="0,7,0,0" VerticalAlignment="Top" Width="90" DisplayDateStart="{Binding ElementName=dpkNgayTra, Path=SelectedDate}"/>
             </Grid>
 
             <Grid Grid.Column="4">
