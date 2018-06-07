@@ -98,6 +98,14 @@ namespace GUI
         {
             Boolean kt = true;
 
+            // check validate
+
+            if (dschitietphieuthue.Count < 1)
+            {
+                MessageBox.Show("Phải thuê ít nhất một phòng");
+                return;
+            }
+            
             // prepare insert phieuthue
             PhieuThueDTO pt = new PhieuThueDTO();
             pt.MaPhieuThue = txtboxMaPhieuThue.Text.ToString();
@@ -244,7 +252,7 @@ namespace GUI
             {
                 // dialog
                 // Phòng đã thêm vào danh sách
-                Debug.Print("Phòng đã thêm vào danh sách");
+                MessageBox.Show("Phòng đã thêm vào danh sách");
                 return;
             }
 
