@@ -38,6 +38,7 @@ namespace GUI
             InitializeComponent();
             CultureInfo culture = new CultureInfo("pt-BR");
             txtboxNgayLapPhieuThue.Text = DateTime.Today.ToString("d", culture);
+            dpkNgayThue.SelectedDate = DateTime.Today;
         }
 
         public UserControlLapPhieuThue(String mkh)
@@ -117,12 +118,12 @@ namespace GUI
 
             if (kt == false)
             {
-                Debug.Print("error insert database");
+                MessageBox.Show("Lập phiếu thuê không thành công");
                 // error did'n insert database
             }
             else
             {
-                Debug.Print("insert phieuthue success");
+                MessageBox.Show("Lập phiếu thuê thành công");
                 // dialog
                 // Lập phiếu thuê thành công
                 // shoe dialog insert success
@@ -180,7 +181,7 @@ namespace GUI
                 // dialog
                 // thông báo ko cho để trống 
                 // note error not empty
-                Debug.Print("NHAP THONG TIN THUE");
+                MessageBox.Show("Nhập Đủ Thông Tin Phiếu Thuê");
                 return;
             }
 
@@ -189,7 +190,7 @@ namespace GUI
                 // dialog
                 // phòng đã được thuê
                 // phong not empty
-                Debug.Print("PHONG IS NOT EMPTY");
+                MessageBox.Show("Phòng Không Trống");
                 return;
             }
 
@@ -215,6 +216,7 @@ namespace GUI
             if (ktphong == null)
             {
                 // dialog
+                MessageBox.Show("Mã Phòng Không Tồn Tại");
                 // mã phòng không có trong hệ thống
                 // throw dialog error MaPhong be incorrect
             }
@@ -223,6 +225,7 @@ namespace GUI
             if (ktphong == null)
             {
                 // dialog
+                MessageBox.Show("Tên Phòng Không Tồn Tại");
                 // tên phòng không có trong hệ thống
                 // throw dialog error TenPhong be incorrect
             }
@@ -232,6 +235,7 @@ namespace GUI
             {
                 // dialog
                 // ngày thuê > ngày trả 
+                MessageBox.Show("Ngày Trả Phải Lớn Hơn Ngày Thuê");
                 // 
             }
 
