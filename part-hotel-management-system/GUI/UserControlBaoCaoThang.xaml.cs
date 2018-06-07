@@ -42,6 +42,11 @@ namespace GUI
             // date format theo kiểu MM-DD-YYYY
             // pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(dpkNgayLap.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",CultureInfo.InvariantCulture);
 
+            if (dtpNgayKetThuc.SelectedDate == null)
+            {
+                dtpNgayKetThuc.SelectedDate = DateTime.Today;
+            }
+
             DateTime NgayBatDau = DateTime.ParseExact(Convert.ToDateTime(dtpNgayBatDau.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
                                          CultureInfo.InvariantCulture);
             DateTime NgayKetThuc = dtpNgayKetThuc.SelectedDate == null ? DateTime.Today : DateTime.ParseExact(Convert.ToDateTime(dtpNgayKetThuc.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",
