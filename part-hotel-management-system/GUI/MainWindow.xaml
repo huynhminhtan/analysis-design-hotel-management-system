@@ -48,7 +48,7 @@
                 <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="#FFAEAEAE"/>
             </StackPanel.Effect>
 
-            <Grid Height="70">
+            <Grid Height="60">
                 <Grid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -58,61 +58,68 @@
                     </TransformGroup>
                 </Grid.RenderTransform>
 
-                <Button x:Name="ButtonOpenMenu" Height="60" Width="60" Margin="5" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonOpenMenu_Click">
+                <Button x:Name="ButtonOpenMenu" Height="50" Width="50" Margin="5" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonOpenMenu_Click">
                     <materialDesign:PackIcon Kind="Menu" Width="30" Height="30"/>
                 </Button>
 
-                <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Right" Visibility="Collapsed" Height="60" Width="60" Margin="5" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonCloseMenu_Click">
+                <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Right" Visibility="Collapsed" Height="50" Width="50" Margin="5" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonCloseMenu_Click">
                     <materialDesign:PackIcon Kind="ArrowLeft" Width="30" Height="30"/>
                 </Button>
             </Grid>
 
-            <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="1" SelectionChanged="ListViewMenu_SelectionChanged">
-                <ListViewItem x:Name="MenuQuanLyPhong" Height="57.5">
+            <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="2" SelectionChanged="ListViewMenu_SelectionChanged">
+                <ListViewItem x:Name="MenuQuanLyPhong" Height="51.56">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                        <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10,0"/>
                         <TextBlock Text="Quản Lý Phòng" VerticalAlignment="Center"  Margin="10,0"/>
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem x:Name="MenuQuanLyPhieuThue" Height="57.5">
+                <ListViewItem x:Name="MenuQuanLyDatPhong" Height="51.56">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Animation" Height="25" Width="25" Margin="10"/>
+                        <materialDesign:PackIcon Kind="ContentPaste" Height="25" Width="25" Margin="10,0"/>
+                        <TextBlock Text="Quản Lý Đặt Phòng" VerticalAlignment="Center"  Margin="10,0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem x:Name="MenuQuanLyPhieuThue" Height="51.56">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Animation" Height="25" Width="25" Margin="10,0"/>
                         <TextBlock Text="Quản Lý Phiếu Thuê" VerticalAlignment="Center"  Margin="10,0"/>
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem x:Name="MenuQuanLyKhachHang" Height="57.5">
+                <ListViewItem x:Name="MenuQuanLyKhachHang" Height="51.56">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="AccountBox" Height="25" Width="25" Margin="10"/>
+                        <materialDesign:PackIcon Kind="AccountBox" Height="25" Width="25" Margin="10,0"/>
                         <TextBlock Text="Quản Lý Khách Hàng" VerticalAlignment="Center"  Margin="10,0"/>
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem x:Name="MenuQuanLyDichVu" Height="57.5">
+                <ListViewItem x:Name="MenuQuanLyDichVu" Height="51.56">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="CreditCardPlus" Height="25" Width="25" Margin="10"/>
+                        <materialDesign:PackIcon Kind="CreditCardPlus" Height="25" Width="25" Margin="10,0"/>
                         <TextBlock Text="Quản Lý Dịch Vụ" VerticalAlignment="Center"  Margin="10,0"/>
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem x:Name="MenuQuanLyNhanVien" Height="57.5">
+                <ListViewItem x:Name="MenuQuanLyNhanVien" Height="51.56">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="HumanMaleFemale" Height="25" Width="25" Margin="10"/>
+                        <materialDesign:PackIcon Kind="HumanMaleFemale" Height="25" Width="25" Margin="10,0"/>
                         <TextBlock Text="Quản Lý Nhân Viên" VerticalAlignment="Center"  Margin="10,0"/>
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem x:Name="MenuBaoCaoThang" Height="57.5">
+                <ListViewItem x:Name="MenuBaoCaoThang" Height="51.56">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ChartBar" Height="25" Width="25" Margin="10"/>
+                        <materialDesign:PackIcon Kind="ChartBar" Height="25" Width="25" Margin="10,0"/>
                         <TextBlock Text="Báo Cáo Tháng" VerticalAlignment="Center"  Margin="10,0"/>
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem x:Name="MenuHeThong" Height="57.5">
+                <ListViewItem x:Name="MenuHeThong" Height="51.56">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" Margin="10"/>
+                        <materialDesign:PackIcon Kind="Settings" Height="25" Width="25" Margin="10,0"/>
                         <TextBlock Text="Hệ Thống" VerticalAlignment="Center"  Margin="10,0"/>
                     </StackPanel>
                 </ListViewItem>
