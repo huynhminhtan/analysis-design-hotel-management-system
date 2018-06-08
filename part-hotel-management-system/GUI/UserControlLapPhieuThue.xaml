@@ -209,7 +209,7 @@
         </Grid>
 
         <Grid Grid.Row="9">
-            <DataGrid Name="dtgChiTietPhieuThue"  ColumnWidth="1.2*"  SelectionMode="Single" SelectionUnit="Cell" IsReadOnly="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserAddRows="False">
+            <DataGrid Name="dtgChiTietPhieuThue"  ColumnWidth="1.2*"  SelectionMode="Single" IsReadOnly="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserAddRows="False" SelectionUnit="FullRow">
                 <DataGrid.Columns>
                     <!--<DataGridTextColumn Width="1.5*" Header="Mã Phòng"  Binding="{Binding MaPhong}"></DataGridTextColumn>
                     <DataGridTextColumn Width="1.5*" Header="Tên Phòng"  Binding="{Binding TenPhong}"></DataGridTextColumn>

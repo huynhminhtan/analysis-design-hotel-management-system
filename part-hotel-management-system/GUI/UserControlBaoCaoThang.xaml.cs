@@ -78,7 +78,8 @@ namespace GUI
             foreach (BaoCaoDoanhThuPhongDTO bcdtp in dsbcdtp)
             {
                 bcdtp.TiLe = bcdtp.TongTien / TongDoanhThu;
-                dt.Rows.Add(bcdtp.TenPhong, bcdtp.TongTien, bcdtp.TiLe);
+                bcdtp.TiLe = Math.Round(bcdtp.TiLe, 4);
+                dt.Rows.Add(bcdtp.TenPhong, bcdtp.TongTien, (bcdtp.TiLe * 100).ToString() + "%");
             }
 
             txtTongDoanhThu.Text = TongDoanhThu.ToString();
