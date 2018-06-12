@@ -116,7 +116,7 @@
             </Grid>
 
             <Grid Grid.Column="2">
-                <TextBlock Name="txtTongDoanhThu" Text="Test" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5,0,10,0" Background="#EEEEEEEE" Padding="5,0"/>
+                <TextBlock Name="txtTongDoanhThu" Text="N/A" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Margin="5,0,10,0" Background="#EEEEEEEE" Padding="5,0"/>
             </Grid>
         </Grid>
 

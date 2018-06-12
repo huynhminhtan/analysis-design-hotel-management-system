@@ -42,6 +42,8 @@ namespace GUI
             // date format theo kiểu MM-DD-YYYY
             // pt.NgayLap = DateTime.ParseExact(Convert.ToDateTime(dpkNgayLap.Text).ToString("dd/MM/yyyy"), "dd/MM/yyyy",CultureInfo.InvariantCulture);
 
+            txtTongDoanhThu.Text = "N/A";
+
             if (dtpNgayKetThuc.SelectedDate == null)
             {
                 dtpNgayKetThuc.SelectedDate = DateTime.Today;
